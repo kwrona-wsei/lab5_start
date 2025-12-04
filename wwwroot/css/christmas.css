@@ -1,0 +1,84 @@
+
+body.christmas {
+  --holiday-red: #c21807;       /* Santa suit */
+  --holiday-green: #0b8f2a;     /* Pine tree */
+  --holiday-gold: #ffd166;      /* Bells */
+  --holiday-cream: #fff8e1;     /* Snow light */
+  background: linear-gradient(180deg, #fefefe 0%, #fff8f8 40%, #f8fff8 100%);
+  color: #1f1f1f;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body.christmas::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; height: 6px;
+  background-image: repeating-linear-gradient(45deg, var(--holiday-red) 0 12px, #ffffff 12px 24px, var(--holiday-green) 24px 36px, #ffffff 36px 48px);
+  z-index: 1030;
+}
+
+body.christmas::after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.9) 1px, rgba(255,255,255,0) 1px);
+  background-size: 3px 3px;
+  opacity: 0.35;
+  animation: snowfall 18s linear infinite;
+  z-index: 1029;
+}
+
+@keyframes snowfall {
+  from { transform: translateY(-10%); }
+  to   { transform: translateY(10%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.christmas::after { animation: none; }
+}
+
+.bg-holiday {
+  background: linear-gradient(90deg, var(--holiday-red), #8c1206) !important;
+}
+.navbar.bg-holiday .navbar-brand,
+.navbar.bg-holiday .nav-link,
+.navbar.bg-holiday .navbar-text {
+  color: #fff !important;
+}
+.navbar.bg-holiday .nav-link.active,
+.navbar.bg-holiday .nav-link:hover {
+  color: var(--holiday-gold) !important;
+}
+
+.btn-primary {
+  background-color: var(--holiday-red);
+  border-color: #8c1206;
+}
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #9f1607;
+  border-color: #7a0f05;
+}
+
+a { color: var(--holiday-green); }
+a:hover, a:focus { color: #086c20; }
+
+.card, .table {
+  border-color: rgba(11, 143, 42, 0.25);
+}
+.card-header {
+  background-color: rgba(255, 209, 102, 0.12);
+}
+
+.holiday-footer {
+  background: linear-gradient(90deg, var(--holiday-green), #086c20);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  margin-top: auto;
+}
+
+.form-control:focus, .form-check-input:focus, .btn:focus {
+  box-shadow: 0 0 0 0.1rem #ffffff, 0 0 0 0.25rem var(--holiday-green);
+}

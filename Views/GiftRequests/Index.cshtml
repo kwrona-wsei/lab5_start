@@ -1,0 +1,50 @@
+@model IEnumerable<lab5_start.Models.ViewModels.GiftRequestViewModel>
+
+@{
+    ViewData["Title"] = "Gift Requests";
+}
+
+<h1>Gift Requests</h1>
+
+<p>
+    <a asp-action="Create">Request a Gift</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GiftName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsApproved)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiftName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @(item.IsApproved ? "Approved" : "Pending")
+            </td>
+            <td>
+                @if (!item.IsApproved)
+                {
+                    <form asp-action="Approve" asp-route-id="@item.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-link">Approve</button>
+                    </form>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

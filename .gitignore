@@ -417,3 +417,5 @@ FodyWeavers.xsd
 *.msm
 *.msp
 .idea
+app.db-shm
+app.db-wal
