@@ -66,6 +66,7 @@ namespace lab5_start.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Santa,Elf")]
         public async Task<IActionResult> Approve(int id)
         {
             var request = await context.GiftRequests.FindAsync(id);
