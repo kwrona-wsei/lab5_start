@@ -14,8 +14,16 @@ namespace lab5_start.Controllers
         : Controller {
         public async Task<IActionResult> Index()
         {
-            List<GiftRequest> requests = await context.GiftRequests.Include(g => g.Gift).Include(g => g.User).ToListAsync();
+            var userId = userManager.GetUserId(User);
 
+            IQueryable<GiftRequest> query = context.GiftRequests.Include(g => g.Gift).Include(g => g.User);
+
+            if (!User.IsInRole("Santa") && !User.IsInRole("Elf"))
+            {
+                query = query.Where(r => r.UserId == userId);
+            }
+
+            var requests = await query.ToListAsync();
 
             var viewModels = requests.Select(r => new GiftRequestViewModel
             {
