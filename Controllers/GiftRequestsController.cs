@@ -5,9 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using lab5_start.Data;
 using lab5_start.Models;
 using lab5_start.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace lab5_start.Controllers
 {
+    [Authorize]
     public class GiftRequestsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         : Controller {
         public async Task<IActionResult> Index()
