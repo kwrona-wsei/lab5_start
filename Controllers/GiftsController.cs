@@ -35,12 +35,14 @@ namespace lab5_start.Controllers
             return View(viewModel);
         }
 
+        [Authorize(Roles = "Santa,Elf")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Santa,Elf")]
         public async Task<IActionResult> Create(GiftInputModel input)
         {
             if (ModelState.IsValid)
@@ -57,6 +59,7 @@ namespace lab5_start.Controllers
             return View(input);
         }
 
+        [Authorize(Roles = "Santa,Elf")]
         public async Task<IActionResult> Edit(int id)
         {
             var gift = await context.Gifts.FindAsync(id);
@@ -72,6 +75,7 @@ namespace lab5_start.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Santa,Elf")]
         public async Task<IActionResult> Edit(int id, GiftInputModel input)
         {
             if (ModelState.IsValid)
@@ -96,6 +100,7 @@ namespace lab5_start.Controllers
             return View(viewModel);
         }
 
+        [Authorize(Roles = "Santa,Elf")]
         public async Task<IActionResult> Delete(int id)
         {
             var gift = await context.Gifts.FindAsync(id);
@@ -111,6 +116,7 @@ namespace lab5_start.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Santa,Elf")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var gift = await context.Gifts.FindAsync(id);
