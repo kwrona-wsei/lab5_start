@@ -50,7 +50,7 @@ namespace lab5_start.Controllers
                 var gift = new Gift
                 {
                     GiftName = input.GiftName,
-                    IsApproved = input.IsApproved
+                    IsApproved = User.IsInRole("Santa") ? input.IsApproved : false
                 };
                 context.Add(gift);
                 await context.SaveChangesAsync();
@@ -84,7 +84,10 @@ namespace lab5_start.Controllers
                 if (gift == null) return NotFound();
 
                 gift.GiftName = input.GiftName;
-                gift.IsApproved = input.IsApproved;
+                if (User.IsInRole("Santa"))
+                {
+                    gift.IsApproved = input.IsApproved;
+                }
 
                 context.Update(gift);
                 await context.SaveChangesAsync();
