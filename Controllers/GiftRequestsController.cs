@@ -79,5 +79,21 @@ namespace lab5_start.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var request = await context.GiftRequests.FindAsync(id);
+            if (request != null)
+            {
+                var userId = userManager.GetUserId(User);
+                if (User.IsInRole("Santa") || User.IsInRole("Elf") || request.UserId == userId)
+                {
+                    context.GiftRequests.Remove(request);
+                    await context.SaveChangesAsync();
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

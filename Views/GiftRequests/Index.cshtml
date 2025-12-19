@@ -49,6 +49,9 @@
                         <button type="submit" class="btn btn-link">Approve</button>
                     </form>
                 }
+                <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-link text-danger">Delete</button>
+                </form>
             </td>
         </tr>
 }
