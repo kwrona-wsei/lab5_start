@@ -6,5 +6,6 @@ namespace lab5_start.Models.ViewModels
     {
         [Required]
         public int GiftId { get; set; }
+        public string Description { get; set; }
     }
 }

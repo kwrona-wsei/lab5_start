@@ -9,6 +9,7 @@ namespace lab5_start.Models
         public virtual Gift Gift { get; set; }
         public string UserId { get; set; }
         public virtual IdentityUser User { get; set; }
+        public string Description { get; set; }
         public bool IsApproved { get; set; }
     }
 }

@@ -30,6 +30,7 @@ namespace lab5_start.Controllers
                 Id = r.Id,
                 GiftName = r.Gift.GiftName,
                 UserName = r.User.UserName,
+                Description = r.Description,
                 IsApproved = r.IsApproved
             }).ToList();
 
@@ -53,6 +54,7 @@ namespace lab5_start.Controllers
                 {
                     GiftId = input.GiftId,
                     UserId = userId,
+                    Description = input.Description,
                     IsApproved = false
                 };
 
