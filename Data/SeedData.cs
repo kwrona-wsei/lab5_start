@@ -33,6 +33,13 @@ namespace lab5_start.Data
                 await userManager.CreateAsync(elfUser, "ElfWork123!");
                 await userManager.AddToRoleAsync(elfUser, "Elf");
             }
+            
+            var naughtyUser = await userManager.FindByEmailAsync("naughtykid@gmail.com");
+            if (naughtyUser == null)
+            {
+                naughtyUser = new IdentityUser { UserName = "naughtykid@gmail.com", Email = "naughtykid@gmail.com", EmailConfirmed = true };
+                await userManager.CreateAsync(naughtyUser, "IWantAllTheGifts123!");
+            }
 
             var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
             if (!context.Gifts.Any())
