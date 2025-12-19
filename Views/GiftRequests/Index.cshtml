@@ -1,7 +1,9 @@
+@using Ganss.Xss
 @model IEnumerable<lab5_start.Models.ViewModels.GiftRequestViewModel>
 
 @{
     ViewData["Title"] = "Gift Requests";
+    var sanitizer = new HtmlSanitizer();
 }
 
 <h1>Gift Requests</h1>
@@ -37,7 +39,7 @@
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                @Html.Raw(item.Description)
+                @Html.Raw(sanitizer.Sanitize(item.Description))
             </td>
             <td>
                 @(item.IsApproved ? "Approved" : "Pending")
